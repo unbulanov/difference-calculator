@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
+import readFile from '../src/index.js';
 import genDiff from '../src/index.js';
 
 const program = new Command();
@@ -11,7 +12,7 @@ program
 .argument('<filepath1>', 'path to file1')
 .argument('<filepath2>', 'path to file2')
 .action((filepath1, filepath2) => {
-    console.log(genDiff(filepath1, filepath2));
+    console.log(readFile(filepath1, filepath2));
 });
 
 program.parse(process.argv);
