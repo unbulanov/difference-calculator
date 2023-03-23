@@ -8,7 +8,7 @@ const genDiff = (data1, data2) => {
 
   const result = {};
   for (const key of keys) {
-    console.log(key);
+    if (!_.has())
   }
 };
 
@@ -20,4 +20,4 @@ const readFile = (filepath1, filepath2) => {
   genDiff(parseContent1, parseContent2);
 };
 
-export default genDiff;
+export default readFile;
