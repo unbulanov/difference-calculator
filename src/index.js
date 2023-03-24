@@ -1,13 +1,14 @@
 import { readFileSync } from 'fs';
 import _ from 'lodash';
+import path from 'path';
 
-const getInfoDiff = (data1, data2) => {
-  const keys = _.uniq(_.keys(data1), _.keys(data2));
+const getInfo = (data1, data2) => {
+  const keys = _.union(_.keys(data1), _.keys(data2));
   const sortedKeys = _.sortBy(keys);
   const result = sortedKeys.map((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
-    if ((value1 !== value2) && (value1 && value2)) {
+    if ((value1 && value2) && (value1 !== value2)) {
         return {
             type: 'changed',
             key,
@@ -45,11 +46,11 @@ const getDiff = (diffArr) => {
             case 'deleted':
                 return `  - ${ diff.key }: ${ diff.value }`;
             case 'unchanged':
-                return `    ${ diff.key }: ${ diff.value }`;
+                return `    ${ diff.key }: ${ diff.value1 }`;
             case 'changed':
-                return `  - ${ diff.key }: ${ diff.value1 } \n  + ${ diff.key }: ${ diff.value2 }`;
+                return (`  - ${ diff.key }: ${ diff.value1 } \n  + ${ diff.key }: ${ diff.value2 }`);
             case 'added':
-                return `  + ${ diff.key }: ${ diff.value2 }`;
+                return `  + ${ diff.key }: ${ diff.value }`;
             default:
                 return null;
         }
@@ -57,12 +58,13 @@ const getDiff = (diffArr) => {
     return `{\n${result.join('\n')}\n}`;
 }
 
-const readFile = (filepath1, filepath2) => {
-  const content1 = readFileSync(filepath1, 'utf-8');
-  const parseContent1 = JSON.parse(content1);
-  const content2 = readFileSync(filepath2, 'utf-8');
-  const parseContent2 = JSON.parse(content2);
-  return getDiff(getInfoDiff(parseContent1, parseContent2));
-};
+const getAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
 
-export default readFile;
+const readFile = (filepath) => readFileSync(getAbsolutePath(filepath), 'utf-8');
+
+const getParseFile = (filepath) => JSON.parse(readFile(filepath));
+
+const genDiff = (filepath1, filepath2) => (getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2))));
+
+
+export default genDiff;
