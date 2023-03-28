@@ -64,6 +64,8 @@ const readFile = (filepath) => readFileSync(getAbsolutePath(filepath), 'utf-8');
 
 const getParseFile = (filepath) => JSON.parse(readFile(filepath));
 
-const genDiff = (filepath1, filepath2) => (getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2))));
+const genDiff = (filepath1, filepath2) => {
+return (getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2))));
+};
 
 export default genDiff;
