@@ -5,6 +5,8 @@ lint:
 publish:
 	npm publish --dry-run
 test:
-	npx jest
+	NODE_OPTIONS=--experimental-vm-modules npx jest
 fix:
 	npm eslint . --fix
+diff:
+	genDiff file1.json file2.json
