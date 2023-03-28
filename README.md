@@ -4,7 +4,7 @@
 <a href="https://codeclimate.com/github/unbulanov/frontend-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/maintainability" /></a>
 <a href="https://codeclimate.com/github/unbulanov/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/test_coverage" /></a>
 
-1. genDiff:
+# genDiff:
 
 
 <a href="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6" target="_blank"><img src="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6.svg" /></a>

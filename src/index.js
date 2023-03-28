@@ -5,9 +5,11 @@ import path from 'path';
 const getInfo = (data1, data2) => {
   const keys = _.union(_.keys(data1), _.keys(data2));
   const sortedKeys = _.sortBy(keys);
+
   const result = sortedKeys.map((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
+
     if ((value1 && value2) && (value1 !== value2)) {
       return {
         type: 'changed',
@@ -20,14 +22,14 @@ const getInfo = (data1, data2) => {
       return {
         type: 'deleted',
         key,
-        value: value1,
+        value1,
       };
     }
     if (!_.has(data1, key)) {
       return {
         type: 'added',
         key,
-        value: value2,
+        value2,
       };
     }
     return {
@@ -44,13 +46,13 @@ const getDiff = (diffArr) => {
     const diffType = diff.type;
     switch (diffType) {
       case 'deleted':
-        return `  - ${diff.key}: ${diff.value}`;
+        return `- ${diff.key}: ${diff.value1}`;
       case 'unchanged':
-        return `    ${diff.key}: ${diff.value1}`;
+        return `  ${diff.key}: ${diff.value1}`;
       case 'changed':
-        return (`  - ${diff.key}: ${diff.value1} \n  + ${diff.key}: ${diff.value2}`);
+        return (`- ${diff.key}: ${diff.value1}\n+ ${diff.key}: ${diff.value2}`);
       case 'added':
-        return `  + ${diff.key}: ${diff.value}`;
+        return `+ ${diff.key}: ${diff.value2}`;
       default:
         return null;
     }
@@ -65,7 +67,8 @@ const readFile = (filepath) => readFileSync(getAbsolutePath(filepath), 'utf-8');
 const getParseFile = (filepath) => JSON.parse(readFile(filepath));
 
 const genDiff = (filepath1, filepath2) => {
-return (getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2))));
+  const result = getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2)));
+  return result;
 };
 
 export default genDiff;
