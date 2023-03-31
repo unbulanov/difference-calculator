@@ -16,7 +16,7 @@ const file4 = getFixturePath('file2.yml');
 
 describe('comparing files', () => {
   test('gendiff two files json', () => {
-    // expect(genDiff(file1, file2)).toEqual(fileOutput);
-    expect(genDiff(file3, file4)).toEqual(fileOutput);
+    expect(genDiff(file1, file2)).toEqual(fileOutput);
+    // expect(genDiff(file3, file4)).toEqual(fileOutput);
   });
 });

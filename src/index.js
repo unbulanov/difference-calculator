@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 import path from 'path';
-import yaml from 'js-yaml';
 
 const getInfo = (data1, data2) => {
   const keys = _.union(_.keys(data1), _.keys(data2));
@@ -65,7 +64,7 @@ const getAbsolutePath = (filepath) => path.resolve(process.cwd(), '__fixtures__'
 
 const readFile = (filepath) => readFileSync(getAbsolutePath(filepath), 'utf-8');
 
-const getParseFile = (filepath) => yaml.load(readFile(filepath));
+const getParseFile = (filepath) => JSON.parse(readFile(filepath));
 
 const genDiff = (filepath1, filepath2) => {
   const result = getDiff(getInfo(getParseFile(filepath1), getParseFile(filepath2)));
