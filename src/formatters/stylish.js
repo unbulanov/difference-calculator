@@ -4,11 +4,12 @@ const getStart = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount - 2);
 const getEnd = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount);
 
 const stringify = (value, depth = 1) => {
+  if (!_.isObject(value)) {
+    return value;
+  }
+
   const values = Object.entries(value);
-  const result = values.map((key) => {
-    const isPlain = (val) => (_.isObject(values) ? `${getStart(depth)}  ${key}: ${stringify(val, depth + 1)}`.join('\n') : val);
-    return isPlain;
-  });
+  const result = values.flatMap(([key, val]) => `${getStart(depth)}  ${key}: ${stringify(val, depth + 1)}`).join('\n');
 
   return `{\n${result}\n${getEnd(depth - 1)}}`;
 };
