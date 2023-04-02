@@ -3,13 +3,12 @@ import _ from 'lodash';
 const getStart = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount - 2);
 const getEnd = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount);
 
-const stringify = (value, depth) => {
-  if (!_.isObject(value)) {
-    return value;
-  }
-
+const stringify = (value, depth = 1) => {
   const values = Object.entries(value);
-  const result = values.map(([key, val]) => `${getStart(depth)}  ${key}: ${stringify(val, depth + 1)}`).join('\n');
+  const result = values.map((key) => {
+    const isPlain = (val) => (_.isObject(values) ? `${getStart(depth)}  ${key}: ${stringify(val, depth + 1)}`.join('\n') : val);
+    return isPlain;
+  });
 
   return `{\n${result}\n${getEnd(depth - 1)}}`;
 };
