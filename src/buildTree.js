@@ -1,49 +1,30 @@
 import _ from 'lodash';
 
 const buildTree = (data1, data2) => {
-  const keys = _.union(_.keys(data1), _.keys(data2));
-  const sortedKeys = _.sortBy(keys);
+  const commonKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 
-  const result = sortedKeys.map((key) => {
-    const value1 = data1[key];
-    const value2 = data2[key];
+  const result = commonKeys.map((key) => {
+    if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
+      return { type: 'nested', key: `${key}`, children: buildTree(data1[key], data2[key]) };
+    }
 
-    if (!_.isEqual(value1, value2)) {
+    if (!Object.hasOwn(data1, key)) {
+      return { type: 'added', key: `${key}`, value: data2[key] };
+    }
+
+    if (!Object.hasOwn(data2, key)) {
+      return { type: 'deleted', key: `${key}`, value: data1[key] };
+    }
+
+    if (!_.isEqual(data1[key], data2[key])) {
       return {
-        type: 'changed',
-        key,
-        value1,
-        value2,
+        type: 'changed', key: `${key}`, value1: data1[key], value2: data2[key],
       };
     }
-    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      return {
-        type: 'nested',
-        key,
-        children: getDiffTree(value1, value2),
-      }
-    }
-    if (!_.has(data2, key)) {
-      return {
-        type: 'deleted',
-        key,
-        value1,
-      };
-    }
-    if (!_.has(data1, key)) {
-      return {
-        type: 'added',
-        key,
-        value2,
-      };
-    }
-    return {
-      type: 'unchanged',
-      key,
-      value1,
-    };
+
+    return { type: 'unchanged', key: `${key}`, value: data1[key] };
   });
-  
+
   return result;
 };
 

@@ -1,17 +1,22 @@
-import { readFileSync } from 'fs';
-import _ from 'lodash';
 import path from 'path';
 import getParseFile from './parsers.js';
+import stylish from './formatters/stylish.js';
+import buildTree from './buildTree.js';
 
-const getAbsolutePath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
+const getFormat = (filename) => path.extname(filename).slice(1);
 
-const readFile = (filepath) => readFileSync(getAbsolutePath(filepath), 'utf-8');
+const getData = (file) => {
+  const formatFile = getFormat(file);
+  return getParseFile(file, formatFile);
+};
 
-const getParseFile = (filepath) => JSON.parse(readFile(filepath));
+const genDiff = (filepath1, filepath2, type = 'stylish') => {
+  const data1 = getData(filepath1);
+  const data2 = getData(filepath2);
+  const difference = buildTree(data1, data2);
+  const result = stylish(difference, type);
 
-const genDiff = (filepath1, filepath2, format) => {
-  const result = getDiffTree(filepath1, filepath2);
-  return getDiff(result, format);
+  return result;
 };
 
 export default genDiff;

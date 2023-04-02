@@ -8,15 +8,22 @@ const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
-const fileOutput = readFile('fileOutputDiff.txt');
-const file1 = getFixturePath('file1.json');
-const file2 = getFixturePath('file2.json');
-const file3 = getFixturePath('file1.yml');
-const file4 = getFixturePath('file2.yml');
+
+const stylishOutput = readFile('stylishResult.txt');
+
+const fileJson1 = getFixturePath('file1.json');
+const fileJson2 = getFixturePath('file2.json');
+
+const fileYml3 = getFixturePath('file1.yml');
+const fileYml4 = getFixturePath('file2.yml');
 
 describe('comparing files', () => {
-  test('gendiff two files json', () => {
-    expect(genDiff(file1, file2)).toEqual(fileOutput);
-    expect(genDiff(file3, file4)).toEqual(fileOutput);
+  test('gendiff default format', () => {
+    expect(genDiff(fileJson1, fileJson2)).toEqual(stylishOutput);
+    expect(genDiff(fileYml3, fileYml4)).toEqual(stylishOutput);
+  });
+  test('gendiff stylish format', () => {
+    expect(genDiff(fileJson1, fileJson2, 'stylish')).toEqual(stylishOutput);
+    expect(genDiff(fileYml3, fileYml4, 'stylish')).toEqual(stylishOutput);
   });
 });
