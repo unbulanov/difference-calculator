@@ -3,8 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/maintainability)](https://codeclimate.com/github/unbulanov/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/test_coverage)](https://codeclimate.com/github/unbulanov/frontend-project-46/test_coverage)
 
-CLI-utility that compares the differences between two files in **JSON** and **Yaml** extansion
-The result of the comparison is displayed in three formats: 
+CLI-utility that compares the differences between two files in ***JSON*** and ***Yaml*** extansion. The result of comparison can be displayed in three formats:
 - stylish
 - plain
 - JSON
