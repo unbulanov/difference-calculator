@@ -26,9 +26,20 @@ cd frontend-project-46.git
 make install
 make link
 ```
-- For help:
+- Usage:
 ```
-genDiff -h
+Usage: genDiff [options] <filepath1> <filepath2>
+
+Compares two configuration files and shows a difference.
+
+Arguments:
+  filepath1            path to file1
+  filepath2            path to file2
+
+Options:
+  -V, --version        output the version number
+  -f, --format <type>  output format
+  -h, --help           display help for command
 ```
 
 
