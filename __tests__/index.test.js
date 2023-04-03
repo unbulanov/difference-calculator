@@ -10,6 +10,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const stylishOutput = readFile('stylishResult.txt');
+const plainOutput = readFile('plainResult.txt');
 
 const fileJson1 = getFixturePath('file1.json');
 const fileJson2 = getFixturePath('file2.json');
@@ -25,5 +26,9 @@ describe('comparing files', () => {
   test('gendiff stylish format', () => {
     expect(genDiff(fileJson1, fileJson2, 'stylish')).toEqual(stylishOutput);
     expect(genDiff(fileYml3, fileYml4, 'stylish')).toEqual(stylishOutput);
+  });
+  test('gendiff plain format', () => {
+    expect(genDiff(fileJson1, fileJson2, 'plain')).toEqual(plainOutput);
+    expect(genDiff(fileYml3, fileYml4, 'plain')).toEqual(plainOutput);
   });
 });
