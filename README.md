@@ -16,14 +16,14 @@ CLI-utility that compares the differences between two files in ***JSON*** and **
 - lodash v4.17
 
 ## Setup:
-- To install, following commands:
+- To install, following commands for clone repository:
 ```
 git clone git@github.com:unbulanov/frontend-project-46.git
-```
-```
 cd frontend-project-46.git
 ```
+- Install cli-utility:
 ```
+make install
 make link
 ```
 - For help:
