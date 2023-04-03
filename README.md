@@ -3,7 +3,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/maintainability)](https://codeclimate.com/github/unbulanov/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1a3b3c4efe7b91232555/test_coverage)](https://codeclimate.com/github/unbulanov/frontend-project-46/test_coverage)
 
-Gendiff is a console program that calculates the differences between two files. The result of the comparison is displayed in three formats: **stylish, plain and JSON**
+CLI-utility that compares the differences between two files in **JSON** and **Yaml** extansion
+The result of the comparison is displayed in three formats: 
+- stylish
+- plain
+- JSON
 
 
 <a href="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6" target="_blank"><img src="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6.svg" /></a>
