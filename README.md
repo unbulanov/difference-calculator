@@ -16,7 +16,20 @@ CLI-utility that compares the differences between two files in ***JSON*** and **
 - lodash v4.17
 
 ## Setup:
-
+- To install, following commands:
+```
+git clone git@github.com:unbulanov/frontend-project-46.git
+```
+```
+cd frontend-project-46.git
+```
+```
+make link
+```
+- For help:
+```
+genDiff -h
+```
 
 
 <a href="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6" target="_blank"><img src="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6.svg" /></a>
