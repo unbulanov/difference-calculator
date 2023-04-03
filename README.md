@@ -8,6 +8,16 @@ CLI-utility that compares the differences between two files in ***JSON*** and **
 - plain
 - JSON
 
+## System Requirements:
+- Ubuntu or MacOs
+- node v18.x
+- commander v10.x
+- make v4.3
+- lodash v4.17
+
+## Setup:
+
+
 
 <a href="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6" target="_blank"><img src="https://asciinema.org/a/t4HZEAAW0rHuLjJJGcmlI7zu6.svg" /></a>
 
