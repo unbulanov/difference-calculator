@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm package for compare differences between two data (JSON or Yaml)",
   "main": "src/index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"

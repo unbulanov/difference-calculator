@@ -19,11 +19,13 @@ CLI-utility that compares the differences between two files in ***JSON*** and **
 - To install, following commands for clone repository:
 ```
 git clone git@github.com:unbulanov/frontend-project-46.git
+
 cd frontend-project-46.git
 ```
 - Install cli-utility:
 ```
 make install
+
 make link
 ```
 - Usage:
