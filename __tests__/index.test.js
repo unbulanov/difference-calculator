@@ -19,21 +19,15 @@ const fileJson2 = getFixturePath('file2.json');
 const fileYml3 = getFixturePath('file1.yml');
 const fileYml4 = getFixturePath('file2.yml');
 
+const formats = [
+  ['stylish', stylishOutput],
+  ['plain', plainOutput],
+  ['json', jsonOutput],
+];
+
 describe('comparing files', () => {
-  test('gendiff default format', () => {
-    expect(genDiff(fileJson1, fileJson2)).toEqual(stylishOutput);
-    expect(genDiff(fileYml3, fileYml4)).toEqual(stylishOutput);
-  });
-  test('gendiff stylish format', () => {
-    expect(genDiff(fileJson1, fileJson2, 'stylish')).toEqual(stylishOutput);
-    expect(genDiff(fileYml3, fileYml4, 'stylish')).toEqual(stylishOutput);
-  });
-  test('gendiff plain format', () => {
-    expect(genDiff(fileJson1, fileJson2, 'plain')).toEqual(plainOutput);
-    expect(genDiff(fileYml3, fileYml4, 'plain')).toEqual(plainOutput);
-  });
-  test('gendiff json format', () => {
-    expect(genDiff(fileJson1, fileJson2, 'json')).toEqual(jsonOutput);
-    expect(genDiff(fileYml3, fileYml4, 'json')).toEqual(jsonOutput);
+  test.each(formats)('gendiff %p formats', (format, expected) => {
+    expect(genDiff(fileJson1, fileJson2, format)).toEqual(expected);
+    expect(genDiff(fileYml3, fileYml4, format)).toEqual(expected);
   });
 });
