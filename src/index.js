@@ -1,5 +1,5 @@
 import path from 'path';
-import getParseFile from './parsers.js';
+import getParse from './parsers.js';
 import formatter from './formatters/index.js';
 import buildTree from './buildTree.js';
 
@@ -7,7 +7,7 @@ const getFormat = (filename) => path.extname(filename).slice(1);
 
 const getData = (file) => {
   const formatFile = getFormat(file);
-  return getParseFile(file, formatFile);
+  return getParse(file, formatFile);
 };
 
 const genDiff = (filepath1, filepath2, type = 'stylish') => {

@@ -15,7 +15,6 @@ const jsonOutput = readFile('jsonResult.txt');
 
 const fileJson1 = getFixturePath('file1.json');
 const fileJson2 = getFixturePath('file2.json');
-
 const fileYml3 = getFixturePath('file1.yml');
 const fileYml4 = getFixturePath('file2.yml');
 

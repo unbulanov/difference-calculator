@@ -5,17 +5,17 @@ import path from 'path';
 const getPath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
 const readFile = (filename) => readFileSync(getPath(filename));
 
-const getParseFile = (file, format) => {
+const getParse = (data, format) => {
   switch (format) {
     case 'json':
-      return JSON.parse(readFile(file), 'utf-8');
+      return JSON.parse(readFile(data), 'utf-8');
     case 'yml':
-      return yaml.load(readFile(file), 'utf-8');
+      return yaml.load(readFile(data), 'utf-8');
     case 'yaml':
-      return yaml.load(readFile(file), 'utf-8');
+      return yaml.load(readFile(data), 'utf-8');
     default:
       throw new Error(`Unknown format of file: ${format}`);
   }
 };
 
-export default getParseFile;
+export default getParse;
