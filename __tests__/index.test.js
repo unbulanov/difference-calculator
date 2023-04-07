@@ -13,20 +13,15 @@ const stylishOutput = readFile('stylishResult.txt');
 const plainOutput = readFile('plainResult.txt');
 const jsonOutput = readFile('jsonResult.txt');
 
-const fileJson1 = getFixturePath('file1.json');
-const fileJson2 = getFixturePath('file2.json');
-const fileYml3 = getFixturePath('file1.yml');
-const fileYml4 = getFixturePath('file2.yml');
-
-const formats = [
-  ['stylish', stylishOutput],
-  ['plain', plainOutput],
-  ['json', jsonOutput],
-];
+const fileFormats = ['json', 'yml', 'yaml'];
 
 describe('comparing files', () => {
-  test.each(formats)('gendiff %p formats', (format, expected) => {
-    expect(genDiff(fileJson1, fileJson2, format)).toEqual(expected);
-    expect(genDiff(fileYml3, fileYml4, format)).toEqual(expected);
+  test.each(fileFormats)('gendiff %p formats', (format) => {
+    const filepath1 = getFixturePath(`file1.${format}`);
+    const filepath2 = getFixturePath(`file2.${format}`);
+    expect(genDiff(filepath1, filepath2)).toEqual(stylishOutput);
+    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(stylishOutput);
+    expect(genDiff(filepath1, filepath2, 'plain')).toEqual(plainOutput);
+    expect(genDiff(filepath1, filepath2, 'json')).toEqual(jsonOutput);
   });
 });
